@@ -1,0 +1,14 @@
+{
+  "name": "dcampillo-skills",
+  "owner": {
+    "name": "David Campillo",
+    "email": "david@dcampillo.com"
+  },
+  "plugins": [
+    {
+      "name": "dcampillo-skills",
+      "source": ".",
+      "description": "David Campillo's personal collection of Claude Code skills."
+    }
+  ]
+}
