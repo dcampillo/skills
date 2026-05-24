@@ -66,9 +66,8 @@ an outer iterator over the children.
 
 5. **Write `ralph-it/README.md`** from the README template **matching the baked mode** (the
    templates below are mode-conditional — write only the one that applies), and **create
-   `ralph-it/progress.txt`** (empty). Add `ralph-it/.prd-*.md` and `ralph-it/logs/` to
-   `.gitignore` (the mirror and run logs are transient; ask before gitignoring `progress.txt`
-   — it's a committed breadcrumb by default).
+   `ralph-it/progress.txt`** (empty). The entire `ralph-it/` folder is gitignored, so all
+   output (scripts, logs, mirrors, progress) stays repo-local and never commits.
 
 6. **Tell the user how to run it** — do **not** run the loop yourself (long-running, commits,
    mutates GitHub, meant to run unattended). Show: `./ralph-it/ralph.sh <iterations>`.

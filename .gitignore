@@ -5,3 +5,6 @@ Thumbs.db
 *~
 .idea/
 .vscode/
+
+# Ralph Loop scaffolding output (transient, repo-local, at repo root only)
+/ralph-it/
