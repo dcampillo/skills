@@ -1,0 +1,20 @@
+{
+  "name": "dcampillo-skills",
+  "description": "David Campillo's personal collection of Claude Code skills.",
+  "version": "0.1.0",
+  "author": {
+    "name": "David Campillo",
+    "email": "david@dcampillo.com"
+  },
+  "homepage": "https://github.com/dcampillo/skills",
+  "repository": "https://github.com/dcampillo/skills",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skills",
+    "automation"
+  ],
+  "skills": [
+    "./skills/engineering/ralph-it"
+  ]
+}
