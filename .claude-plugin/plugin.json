@@ -15,6 +15,7 @@
     "automation"
   ],
   "skills": [
-    "./skills/engineering/ralph-it"
+    "./skills/engineering/ralph-it",
+    "./skills/writing/human-voice"
   ]
 }

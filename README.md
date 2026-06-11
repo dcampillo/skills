@@ -22,9 +22,13 @@ based on what you ask for.
 
 | Skill | What it does | Use when |
 | --- | --- | --- |
-| [`ralph-it`](skills/engineering/ralph-it/) | Scaffolds a **Ralph Loop** — a self-driving bash loop that repeatedly invokes Claude to implement one task at a time until the work is done. Drives a single GitHub issue or a whole PRD's linked child issues in sequence, with a hardened `ralph.sh`, completion gates, and a no-progress guard. | You want to set up an unattended implement → test → commit loop against a GitHub issue or PRD ("ralph it", "grind through this PRD"). |
+| [`ralph-it`](skills/engineering/ralph-it/SKILL.md) | Scaffolds a **Ralph Loop** — a self-driving bash loop that repeatedly invokes Claude to implement one task at a time until the work is done. Drives a single GitHub issue or a whole PRD's linked child issues in sequence, with a hardened `ralph.sh`, completion gates, and a no-progress guard. | You want to set up an unattended implement → test → commit loop against a GitHub issue or PRD ("ralph it", "grind through this PRD"). |
 
-_More skills will be added here as the collection grows._
+### Writing
+
+| Skill | What it does | Use when |
+| --- | --- | --- |
+| [`human-voice`](skills/writing/human-voice/SKILL.md) | Helps you write with a natural, authentic human voice that feels genuine and conversational while maintaining clarity and impact. | You want to improve the tone and authenticity of your writing, make it more relatable, or ensure your voice comes through clearly in prose, emails, or documentation. |
 
 ## Repository layout
 
