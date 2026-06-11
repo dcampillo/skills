@@ -30,6 +30,12 @@ based on what you ask for.
 | --- | --- | --- |
 | [`human-voice`](skills/writing/human-voice/SKILL.md) | Helps you write with a natural, authentic human voice that feels genuine and conversational while maintaining clarity and impact. | You want to improve the tone and authenticity of your writing, make it more relatable, or ensure your voice comes through clearly in prose, emails, or documentation. |
 
+### SEO
+
+| Skill | What it does | Use when |
+| --- | --- | --- |
+| [`topical-authority-map`](skills/seo/topical-authority-map/SKILL.md) | Builds a pillar-and-cluster topical authority map for a niche, exported as a CSV with titles, slugs, search intent, estimated volume, and keyword difficulty. | You want to plan a site's content around a niche, build topical authority, or need a keyword/content map ("topical map", "content plan", "what should I write to rank"). |
+
 ## Repository layout
 
 ```
