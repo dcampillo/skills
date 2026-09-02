@@ -29,6 +29,7 @@ based on what you ask for.
 | Skill | What it does | Use when |
 | --- | --- | --- |
 | [`human-voice`](skills/writing/human-voice/SKILL.md) | Helps you write with a natural, authentic human voice that feels genuine and conversational while maintaining clarity and impact. | You want to improve the tone and authenticity of your writing, make it more relatable, or ensure your voice comes through clearly in prose, emails, or documentation. |
+| [`minto-writer`](skills/writing/minto-writer/SKILL.md) | Writes or restructures emails, memos, reports, and slides with Barbara Minto's Pyramid Principle and the SCQA framework — governing message first, then 2–4 supporting arguments, then the evidence. | You want an executive-facing, answer-first piece of writing ("Minto", "pyramid principle", "SCQA", "BLUF"), or you need an update or memo restructured so the point comes first. |
 
 ### SEO
 
