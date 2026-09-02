@@ -36,6 +36,12 @@ based on what you ask for.
 | --- | --- | --- |
 | [`topical-authority-map`](skills/seo/topical-authority-map/SKILL.md) | Builds a pillar-and-cluster topical authority map for a niche, exported as a CSV with titles, slugs, search intent, estimated volume, and keyword difficulty. | You want to plan a site's content around a niche, build topical authority, or need a keyword/content map ("topical map", "content plan", "what should I write to rank"). |
 
+### Productivity
+
+| Skill | What it does | Use when |
+| --- | --- | --- |
+| [`build-course`](skills/productivity/build-course/SKILL.md) | Builds a standalone, multi-lesson Markdown training course — syllabus, numbered lessons with hands-on tasks and self-checks, glossary, capstone assessment and a cited source register. Interviews you for the brief, researches sources *before* drafting, and verifies the finished course with a fresh reviewer so no claim ships uncited. | You need to turn a topic or a pile of internal docs into a training an employee or student can work through step by step on their own ("build a course", "create an onboarding training", "write a tutorial for new hires"). |
+
 ## Repository layout
 
 ```
