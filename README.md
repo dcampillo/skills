@@ -29,18 +29,13 @@ based on what you ask for.
 | Skill | What it does | Use when |
 | --- | --- | --- |
 | [`human-voice`](skills/writing/human-voice/SKILL.md) | Helps you write with a natural, authentic human voice that feels genuine and conversational while maintaining clarity and impact. | You want to improve the tone and authenticity of your writing, make it more relatable, or ensure your voice comes through clearly in prose, emails, or documentation. |
+| [`minto-writer`](skills/writing/minto-writer/SKILL.md) | Writes or restructures emails, memos, reports, and slides using Barbara Minto's Pyramid Principle and the SCQA framework (Situation, Complication, Question, Answer), so the reader gets the answer first and the supporting reasoning underneath. | You need a clear, answer-first (BLUF) message for executives or other busy readers ("write this in the Minto pyramid", "use SCQA", "help me write an email to my exec team about X"). |
 
 ### SEO
 
 | Skill | What it does | Use when |
 | --- | --- | --- |
 | [`topical-authority-map`](skills/seo/topical-authority-map/SKILL.md) | Builds a pillar-and-cluster topical authority map for a niche, exported as a CSV with titles, slugs, search intent, estimated volume, and keyword difficulty. | You want to plan a site's content around a niche, build topical authority, or need a keyword/content map ("topical map", "content plan", "what should I write to rank"). |
-
-### Productivity
-
-| Skill | What it does | Use when |
-| --- | --- | --- |
-| [`build-course`](skills/productivity/build-course/SKILL.md) | Builds a standalone, multi-lesson Markdown training course — syllabus, numbered lessons with hands-on tasks and self-checks, glossary, capstone assessment and a cited source register. Interviews you for the brief, researches sources *before* drafting, and verifies the finished course with a fresh reviewer so no claim ships uncited. | You need to turn a topic or a pile of internal docs into a training an employee or student can work through step by step on their own ("build a course", "create an onboarding training", "write a tutorial for new hires"). |
 
 ## Repository layout
 
