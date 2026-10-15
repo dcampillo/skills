@@ -8,3 +8,6 @@ Thumbs.db
 
 # Ralph Loop scaffolding output (transient, repo-local, at repo root only)
 /ralph-it/
+
+# Windows download metadata (WSL)
+*:Zone.Identifier
