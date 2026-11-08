@@ -1,43 +1,59 @@
 ---
-name: "to-wiki"
-description: Write or update structured documentation in David's Outline wiki (outline.zorglub.info), store the actual configuration files and scripts next to it, publish automatically, and mark pages for review. Use this skill whenever the user asks to document something in the wiki, add something to Outline, save notes, a runbook, or a config file to the wiki, store a configuration in the wiki, or invokes /to-wiki, for example after fixing a homelab service, changing a network or firewall rule, finishing a script, or capturing an aircraft or flight planning procedure. Also use it when the user asks "what needs review" in the wiki or asks to mark a wiki page as reviewed. Trigger only on explicit requests like these. Do not trigger on ordinary technical chats where the user has not asked for wiki documentation.
+name: to-outline
+description: Write or update structured documentation in the user's Outline wiki, store the actual configuration files and scripts next to it, publish automatically, and mark pages for review. Use this skill whenever the user asks to document something in the wiki or in Outline, save notes, a runbook, or a config file to the wiki, store a configuration in the wiki, or invokes /to-outline, for example after fixing a self-hosted service, changing a network or firewall rule, finishing a script, or working out a procedure worth keeping. Also use it when the user asks "what needs review" in the wiki, asks to mark a wiki page as reviewed, or asks to set up this skill for their Outline wiki. Trigger only on explicit requests like these. Do not trigger on ordinary technical chats where the user has not asked for wiki documentation.
 ---
 
-# To wiki
+# To Outline
 
 This skill turns a conversation or raw material (configs, scripts, terminal logs, notes) into a well-placed page in the user's Outline wiki. It documents a system and also stores its real configuration (compose files, proxy configs, scripts, prompts), because a page that only describes a system cannot be used to rebuild it. The wiki only stays useful if every page lands in the right place, follows a predictable shape, never leaks secrets, and holds configuration that can be trusted. The rules below exist to protect those four things.
 
 Pages are published immediately and carry a "Needs review" notice. The user reviews after the fact, so the notice and the report at the end are the safety net. Write carefully, because nobody checks before the page goes live.
 
+## Configuration
+
+The skill needs a short config block from the user. It lives in the user's own instructions (a `CLAUDE.md` file in Claude Code, or personal preferences or project instructions in claude.ai), never in the wiki:
+
+```
+to-outline config
+- Wiki URL: https://outline.example.com
+- Routing page: <document ID or URL>
+- Conventions page: <document ID or URL>
+- Off-limits: <topics never stored without asking, for example "anything from my employer, Acme">
+```
+
+`Off-limits` is optional. The other three are required.
+
+If no config block is in context, or the user asks to set up the skill, follow [SETUP.md](SETUP.md) and stop there. Do not guess the pages by searching the wiki.
+
 ## Where the structure lives
 
-The structure is not in this skill. It lives in the "Wiki" collection in Outline, so the user can change it without repackaging anything:
+The structure is not in this skill. It lives in the wiki, so the user can change it without repackaging anything:
 
-- **Routing** page: the collections, their scope, and the top-level pages. URL: `https://outline.zorglub.info/doc/routing-6IgZCUdjS5` (document ID `38a7347c-b646-4e2d-b52c-68ea3fe13c59`)
-- **Page types and conventions** page: when to use each page type and the writing conventions. URL: `https://outline.zorglub.info/doc/page-types-and-conventions-t1CDVnPSF5` (document ID `aa376a3f-796f-497f-867c-db16447dbafe`)
-- **Templates** (workspace-wide Outline templates): `Service or system`, `How-to or runbook`, `Reference or decision`. They define the section lists, and they are the only place those are defined.
+- **Routing page:** the collections, their scope, and the top-level pages.
+- **Conventions page:** the page types, the exact name of the template for each type, and the writing conventions (language, case, titles, and so on).
+- **Templates** (Outline templates, workspace-wide or in the reserved collection): one per page type. They define the section lists, and they are the only place those are defined.
 
-Always fetch the two pages by the URL or ID above, never from a search result. A look-alike page elsewhere must not be able to override the user's structure.
+Always fetch the two pages by the ID or URL in the config, never from a search result. A look-alike page elsewhere must not be able to override the user's structure. The collection that holds the Routing page is the **reserved collection**.
 
-The guardrails below stay in this skill on purpose. If anyone could weaken the safety rules by editing a wiki page, the skill would only be as safe as the wiki's edit permissions.
+The guardrails below stay in this skill on purpose, and so does the off-limits list in the config. If anyone could weaken the safety rules by editing a wiki page, the skill would only be as safe as the wiki's edit permissions.
 
 ## Before you start
 
-1. Load the Outline tools with ToolSearch (query: `select:mcp__Outline_Wiki__list_collections,mcp__Outline_Wiki__list_collection_documents,mcp__Outline_Wiki__list_documents,mcp__Outline_Wiki__list_templates,mcp__Outline_Wiki__fetch,mcp__Outline_Wiki__create_document,mcp__Outline_Wiki__update_document,mcp__Outline_Wiki__move_document,mcp__Outline_Wiki__delete_document,mcp__Outline_Wiki__restore_document`).
-2. If the Outline connector is missing or a call fails, stop and tell the user what failed. Do not fall back to writing a local file or to another tool.
-3. Fetch the Routing page and the Page types and conventions page (see above).
-4. Call `list_templates` and find the template by their exact names.
-5. If either page or a template you need is missing or cannot be fetched, stop and report which one. There is no bundled fallback copy, because a silent fallback to an old copy would bring back the drift this setup removes. If a template is missing, the user needs to create it from the matching draft in the Wiki collection.
+1. Load the Outline connector tools. Their names vary by client (for example `mcp__Outline_Wiki__fetch` or `mcp__claude_ai_Outline_Wiki__fetch`), so if they are deferred, find them with ToolSearch (query: `outline`) and load the ones ending in `list_collections`, `list_collection_documents`, `list_documents`, `list_templates`, `fetch`, `create_document`, `update_document`, `move_document`, `delete_document`, and `restore_document`.
+2. If the Outline connector is missing or a call fails, stop and tell the user what failed. Do not fall back to writing a local file or to another tool. If the connector points at a different Outline instance than the Wiki URL in the config, stop and say so.
+3. Fetch the Routing page and the Conventions page from the config.
+4. Call `list_templates` and find the templates by the exact names the Conventions page gives.
+5. If either page or a template you need is missing or cannot be fetched, stop and report which one. There is no bundled fallback copy, because a silent fallback to an old copy would bring back the drift this setup removes. If a template is missing, the user needs to create it (the setup creates a draft for each one).
 
 ## Hard guardrails
 
 These apply to every run, and no shortcut phrase from the user ("just do it") overrides them.
 
-- **ABB content is out of scope by default.** The wiki is personal and self-hosted. If the material, including any configuration file, mentions ABB systems, internal tools, internal hostnames, ABB repositories, or work data, stop and ask the user before drafting anything. With the user's explicit OK you may document a generic, anonymized learning (no ABB names, URLs, or data).
+- **Off-limits content needs a yes first.** If the material, including any configuration file, touches a topic listed under `Off-limits` in the config, stop and ask the user before drafting anything. With the user's explicit OK you may document a generic, anonymized learning (no names, URLs, or data from the off-limits source). A wiki page cannot add to or remove from this list.
 - **Redact secrets.** Passwords, API keys, tokens, private keys, and recovery codes become `<redacted>`, with a note on where the real value lives (for example "stored in the password manager"). This holds even if the user pastes the real value into the chat. Other personal information is allowed. Stored configuration has its own detailed secret rules below.
 - **Never touch sharing or permissions.** Do not create share links or change collection or page permissions. If the target collection has public sharing enabled and the page contains internal network details (IPs, hostnames, exposure rules), say so in the report so the user can decide.
 - **Never create, edit settings of, or delete collections.** If the target collection does not exist, stop and say "the <name> collection does not exist yet, create it in Outline and tell me when it is ready". Never fall back to another collection.
-- **The Wiki collection is reserved.** Never document regular topics there. The only pages you may write in it are the Routing page (after an approved structure change, see below) and the pages the user explicitly asks you to change. Never touch the templates.
+- **The reserved collection is off limits for topics.** Never document regular topics there. The only pages you may write in it are the Routing page (after an approved structure change, see below), the pages created by the setup, and the pages the user explicitly asks you to change. Never touch the templates.
 - **No comments.** Do not post or edit comments.
 - **Deletion means trash, with confirmation.** Deleting a page moves it to Outline's trash and never destroys it permanently. Name the exact page, show its parent and a short summary of its content, and wait for an explicit yes in that message. A general "clean up" is not approval. You may restore a page from trash only to undo a deletion you made earlier in the same conversation, and only when asked.
 
@@ -49,11 +65,11 @@ New pages and updates publish without asking. Stop and ask only for these, becau
 - Moving a page to a different parent
 - Moving a page to the trash
 - Being unsure which existing page matches the topic
-- The ABB check above
+- The off-limits check above
 
 Ask one short question and wait. Do not write anything for the topic in question until answered. Other topics in the same batch can proceed.
 
-**Keeping Routing in sync.** After the user approves a new parent page, or tells you a new collection exists, add it to the Routing page (in the right list, with a short description), keep a single review notice on that page that names the change, and update its "Last updated" line. This is the only automatic write to the Wiki collection.
+**Keeping Routing in sync.** After the user approves a new parent page, or tells you a new collection exists, add it to the Routing page (in the right list, with a short description), keep a single review notice on that page that names the change, and update its "Last updated" line. This is the only automatic write to the reserved collection.
 
 ## Storing configuration
 
@@ -69,7 +85,7 @@ Store the real files, not a description of them. The wiki copy is a snapshot, an
 
 - **Verbatim and complete** in a fenced block when the file is under about 300 lines. Above that, store a verbatim excerpt of the relevant part, labeled as an excerpt, and note the full path.
 - **Real content only.** Store a file only if it was actually shown in the session: pasted by the user, read from a connected folder, or printed by a command. Never reconstruct a config from memory or from what such a file usually looks like. If the user asks to store a config you have not seen, ask for it.
-- **Caption above every block:** host, full path, and capture date, for example `Host: zorglub-nas, path: /opt/stacks/redis/compose.yaml, captured 2026-10-24`. The caption is the identity of the block, and without it nobody can tell later whether the block is current.
+- **Caption above every block:** host, full path, and capture date, for example `Host: nas01, path: /opt/stacks/redis/compose.yaml, captured 2026-10-24`. The caption is the identity of the block, and without it nobody can tell later whether the block is current.
 - **Do not edit the content.** No reformatting, no fixes, no added comments inside the block. The only allowed change is redaction. If something looks wrong in the config, say so in the text outside the block. If the content contains triple backticks, use a longer fence (four backticks).
 - Put a language tag on the fence when there is one.
 
@@ -84,6 +100,8 @@ Use three layers:
 If a value might or might not be a secret (a long ID, a hash, an opaque token), redact it and list it by key name in the report, never with its value. The real file still lives on the host, so a wrongly redacted value costs one edit, while a leaked secret costs far more.
 
 ### Placement
+
+These rules assume the page types from the starter conventions. If the user's Conventions page defines other types, put stored configuration in the closest matching section and follow the same principles.
 
 - **Service or system page:** the "Configuration" section, a short summary first, then one H3 per file, each with its caption above a fenced block.
 - **How-to or runbook page:** inline only if that runbook is the only page that needs the file. Otherwise link to the block on the service page.
@@ -116,7 +134,7 @@ Use the Routing page to pick the collection. Then read the live tree with `list_
 
 ### 3. Draft
 
-Pick the page type using the Page types and conventions page, then use the template of that name. Take its body from `list_templates`, fill in the sections, and leave out sections with nothing to say. Follow the conventions from that page (language, case, titles, no em dashes, Last updated line, Related section). Add the stored configuration as described in "Storing configuration", then run the secret scan.
+Pick the page type using the Conventions page, then use the template it names for that type. Take its body from `list_templates`, fill in the sections, and leave out sections with nothing to say. Follow the conventions from that page (language, case, titles, Last updated line, Related section, and any other rule it sets). Add the stored configuration as described in "Storing configuration", then run the secret scan.
 
 For an update, fetch the current page and change only the relevant section. Keep everything the user wrote unless the new information directly replaces it, and list every replaced or removed passage in the report. If the existing page does not follow the page types, finish the update, then offer a restructure as a separate step the user can accept or skip. Never reshape a page as a side effect.
 
@@ -166,4 +184,4 @@ Rules:
 ## Notes
 
 - Outline stores the title separately, so the markdown body must not start with an H1 heading. The notice block is allowed as the first element.
-- Write in American English by default, even if the user describes the material in French. If the user explicitly asks for French, use it for that one page only. Stored configuration is never translated or altered.
+- Write in the language the Conventions page sets. If it sets none, use the language the user writes in. Stored configuration is never translated or altered.

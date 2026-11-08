@@ -32,20 +32,13 @@ based on what you ask for.
 | [`human-voice`](skills/writing/human-voice/SKILL.md) | Helps you write with a natural, authentic human voice that feels genuine and conversational while maintaining clarity and impact. | You want to improve the tone and authenticity of your writing, make it more relatable, or ensure your voice comes through clearly in prose, emails, or documentation. |
 | [`minto-writer`](skills/writing/minto-writer/SKILL.md) | Writes or restructures emails, memos, reports, and slides using Barbara Minto's Pyramid Principle and the SCQA framework (Situation, Complication, Question, Answer), so the reader gets the answer first and the supporting reasoning underneath. | You need a clear, answer-first (BLUF) message for executives or other busy readers ("write this in the Minto pyramid", "use SCQA", "help me write an email to my exec team about X"). |
 | [`tldr`](skills/writing/tldr/SKILL.md) | Produces a structured TLDR of pasted text or a URL: a short headline, what the source is, 3 to 6 key points, and one key takeaway, then offers to save it as markdown or PDF. | You want the gist of an article, doc, or link ("TLDR", "summarize this", "what's this about?"). |
+| [`to-outline`](skills/writing/to-outline/SKILL.md) | Writes or updates structured pages in your Outline wiki and stores the real config files and scripts next to them, verbatim with secrets redacted. Routing, page types, and templates live in the wiki itself; pages publish right away with a "Needs review" notice. Includes a first-run setup that creates the pages it needs. | You want something documented in Outline ("add this to the wiki", "store this config", "what needs review?"), or you want to set the skill up for your wiki. |
 
 ### SEO
 
 | Skill | What it does | Use when |
 | --- | --- | --- |
 | [`topical-authority-map`](skills/seo/topical-authority-map/SKILL.md) | Builds a pillar-and-cluster topical authority map for a niche, exported as a CSV with titles, slugs, search intent, estimated volume, and keyword difficulty. | You want to plan a site's content around a niche, build topical authority, or need a keyword/content map ("topical map", "content plan", "what should I write to rank"). |
-
-### Personal
-
-Skills tied to my own setup (Outline wiki, homelab). Useful mostly to me, but available in the plugin.
-
-| Skill | What it does | Use when |
-| --- | --- | --- |
-| [`to-wiki`](skills/personal/to-wiki/SKILL.md) | Writes or updates structured documentation in my Outline wiki, stores the actual config files and scripts next to it, publishes, and marks pages for review. | You explicitly ask to document something in the wiki ("add this to Outline", "/to-wiki"), or ask what wiki pages need review. |
 
 ## Repository layout
 
