@@ -30,6 +30,7 @@ based on what you ask for.
 | --- | --- | --- |
 | [`human-voice`](skills/writing/human-voice/SKILL.md) | Helps you write with a natural, authentic human voice that feels genuine and conversational while maintaining clarity and impact. | You want to improve the tone and authenticity of your writing, make it more relatable, or ensure your voice comes through clearly in prose, emails, or documentation. |
 | [`minto-writer`](skills/writing/minto-writer/SKILL.md) | Writes or restructures emails, memos, reports, and slides using Barbara Minto's Pyramid Principle and the SCQA framework (Situation, Complication, Question, Answer), so the reader gets the answer first and the supporting reasoning underneath. | You need a clear, answer-first (BLUF) message for executives or other busy readers ("write this in the Minto pyramid", "use SCQA", "help me write an email to my exec team about X"). |
+| [`tldr`](skills/writing/tldr/SKILL.md) | Produces a structured TLDR of pasted text or a URL: a short headline, what the source is, 3 to 6 key points, and one key takeaway, then offers to save it as markdown or PDF. | You want the gist of an article, doc, or link ("TLDR", "summarize this", "what's this about?"). |
 
 ### Personal
 
