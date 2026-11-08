@@ -7,10 +7,7 @@
   "plugins": [
     {
       "name": "dcampillo-skills",
-      "source": {
-        "source": "github",
-        "repo": "dcampillo/skills"
-      },
+      "source": "./",
       "description": "David Campillo's personal collection of Claude Code skills."
     }
   ]
