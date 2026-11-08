@@ -2,5 +2,6 @@
 
 | Skill | Description |
 | --- | --- |
-| [`ralph-it`](ralph-it/SKILL.md) | Scaffolds a Ralph Loop — a self-driving bash loop that repeatedly invokes Claude to implement one task at a time until the work is done. |
-| [`handoff`](handoff/SKILL.md) | Compacts the current conversation into a handoff document so a fresh agent can continue the work. |
+| [`session-handoff`](session-handoff/SKILL.md) | Writes a handoff document so a fresh agent session can continue the current work. |
+| [`prd-from-context`](prd-from-context/SKILL.md) | Turns the current conversation and codebase into a PRD and publishes it to the issue tracker, or saves it as Markdown. |
+| [`stress-test-plan`](stress-test-plan/SKILL.md) | Questions you one decision at a time about a plan or design until every branch is resolved, then summarizes the decisions. |
