@@ -31,11 +31,13 @@ based on what you ask for.
 | [`human-voice`](skills/writing/human-voice/SKILL.md) | Helps you write with a natural, authentic human voice that feels genuine and conversational while maintaining clarity and impact. | You want to improve the tone and authenticity of your writing, make it more relatable, or ensure your voice comes through clearly in prose, emails, or documentation. |
 | [`minto-writer`](skills/writing/minto-writer/SKILL.md) | Writes or restructures emails, memos, reports, and slides using Barbara Minto's Pyramid Principle and the SCQA framework (Situation, Complication, Question, Answer), so the reader gets the answer first and the supporting reasoning underneath. | You need a clear, answer-first (BLUF) message for executives or other busy readers ("write this in the Minto pyramid", "use SCQA", "help me write an email to my exec team about X"). |
 
-### SEO
+### Personal
+
+Skills tied to my own setup (Outline wiki, homelab). Useful mostly to me, but available in the plugin.
 
 | Skill | What it does | Use when |
 | --- | --- | --- |
-| [`topical-authority-map`](skills/seo/topical-authority-map/SKILL.md) | Builds a pillar-and-cluster topical authority map for a niche, exported as a CSV with titles, slugs, search intent, estimated volume, and keyword difficulty. | You want to plan a site's content around a niche, build topical authority, or need a keyword/content map ("topical map", "content plan", "what should I write to rank"). |
+| [`to-wiki`](skills/personal/to-wiki/SKILL.md) | Writes or updates structured documentation in my Outline wiki, stores the actual config files and scripts next to it, publishes, and marks pages for review. | You explicitly ask to document something in the wiki ("add this to Outline", "/to-wiki"), or ask what wiki pages need review. |
 
 ## Repository layout
 

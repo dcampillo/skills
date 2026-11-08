@@ -1,6 +1,6 @@
 # Personal skills
 
-Skills tied to my own setup. Not promoted: not listed in the top-level `README.md` or `.claude-plugin/plugin.json`.
+Skills tied to my own setup. Listed in the top-level `README.md` and `.claude-plugin/plugin.json` like the other shipped buckets.
 
 | Skill | Description |
 | --- | --- |
