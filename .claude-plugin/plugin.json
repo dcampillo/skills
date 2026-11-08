@@ -1,7 +1,7 @@
 {
   "name": "dcampillo-skills",
   "description": "David Campillo's personal collection of Claude Code skills.",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "author": {
     "name": "David Campillo",
     "email": "david@dcampillo.com"
@@ -20,7 +20,7 @@
     "./skills/writing/human-voice",
     "./skills/writing/minto-writer",
     "./skills/writing/tldr",
-    "./skills/seo/topical-authority-map",
-    "./skills/personal/to-wiki"
+    "./skills/writing/to-outline",
+    "./skills/seo/topical-authority-map"
   ]
 }
