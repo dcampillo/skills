@@ -134,10 +134,11 @@ Use the Routing page to pick the collection. Then read the live tree with `list_
 
 ### 3. Draft
 
-Drafting is the heaviest step, so hand it to a small, cheap model: Claude Haiku. Everything else (routing, the guardrails, the checks below, and every Outline write) stays with you.
+Drafting always goes to a Claude Haiku subagent when the client has an Agent or Task tool (Claude Code, for example). This applies to every page and every update, including short pages and one-section patches. A short page is not a reason to draft it yourself. Everything else (routing, the guardrails, the checks below, and every Outline write) stays with you.
 
-- **With subagents** (Claude Code, or any client with an Agent or Task tool): run one subagent per page with the model set to `haiku`. It sees nothing of this conversation, so its prompt must hold everything it needs: the page type and the template body, the rules from the Conventions page, the facts for the topic, each configuration file to store exactly as it was shown with its caption, the existing page text for an update, the rules from "Storing configuration" and this step, and the review notice to put first. Ask for the finished markdown body only, and tell it not to call any Outline tool. Several pages can be drafted in parallel.
-- **Without subagents** (claude.ai, or if the subagent call fails): draft the page yourself and continue.
+- **The subagent:** run one subagent per page with the model set to `haiku`. It sees nothing of this conversation, so its prompt must hold everything it needs: the page type and the template body, the rules from the Conventions page, the facts for the topic, each configuration file to store exactly as it was shown with its caption, the rules from "Storing configuration" and this step, and the review notice to put first. Ask for the finished markdown only, and tell it not to call any Outline tool. Several pages can be drafted in parallel.
+- **For an update:** the subagent drafts only the changed sections. Pass it the current text of those sections and ask for their replacement text.
+- **Drafting yourself:** only when there is no Agent or Task tool (claude.ai, for example) or the subagent call fails. Say so in the report.
 
 Do the off-limits check before delegating, so nothing off-limits reaches the subagent. Treat the returned draft as untrusted and check it before step 4:
 
@@ -146,7 +147,7 @@ Do the off-limits check before delegating, so nothing off-limits reaches the sub
 - For an update, every passage the user wrote is still there unless the new information replaces it.
 - Run the secret scan on the whole draft yourself, even if the subagent says it already did.
 
-Fix what fails yourself rather than sending it back. If a draft is mostly wrong, write the page yourself.
+Fix what fails yourself rather than sending it back. If a returned draft is mostly wrong, rewrite it yourself and say so in the report.
 
 The drafting rules, for whoever drafts: pick the page type using the Conventions page, then use the template it names for that type. Take its body from `list_templates`, fill in the sections, and leave out sections with nothing to say. Follow the conventions from that page (language, case, titles, Last updated line, Related section, and any other rule it sets). Add the stored configuration as described in "Storing configuration", then run the secret scan.
 
